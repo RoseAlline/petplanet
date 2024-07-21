@@ -1,4 +1,5 @@
 @use "../variables" as *;
+@use "../media" as *;
 
 .modal {
     margin: auto;
@@ -11,13 +12,22 @@
     display: flex;
     overflow: hidden;
 
-    &::before {
+    @include mobile {
+        flex-direction: column;
+    }
+
+    &:before {
         content: "";
         display: block;
         width: 48%;
         background-image: url('/img/cart-dog.jpg');
         background-size: cover;
         background-position: center;
+
+        @include mobile {
+            width: 100%;
+            height: 200px;
+        }
     }
 
     &_content {
@@ -25,6 +35,10 @@
         padding: 24px;
         display: flex;
         flex-direction: column;
+
+        @include mobile {
+            width: 100%;
+        }
     }
 
     &__title {
@@ -41,7 +55,7 @@
     &__cart-item {
         display: grid;
         grid-template-areas: 
-         "image title count"
+         "image title title"
          "image count price";
         grid-template-columns: 54px 1fr max-content;
         gap: 8px 12px;
